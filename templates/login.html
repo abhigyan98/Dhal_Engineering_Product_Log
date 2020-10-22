@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="/pwa_logo/icon48.png" type="image/png" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link rel="icon" href="{{url_for('static', filename='dec.png')}}" type="image/x-icon">
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
+    <title>Dhal Engineering</title>
+    <style>
+        .navbar-color {
+            background-color: rgba(253, 191, 76, 0.897);
+        }
+
+        .font-large {
+            font-size: 16px !important;
+        }
+
+        .round {
+            border-radius: 30px;
+            font-size: 18px;
+        }
+
+        .size {
+            font-size: 18px;
+        }
+
+        .table-font {
+            font-size: 5px;
+        }
+
+        .table-color {
+            background-color: rgba(50, 255, 129, 0.568);
+        }
+
+        .nav:hover {
+            background-color: blue;
+        }
+
+        .circle {
+            border-radius: 25px;
+        }
+        .z-depth-4 {
+            box-shadow: 0px 0px 20px -5px rgb(194, 194, 194);
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(".deleteItem").click(function () {
+                if (confirm("Do you want to delete this data?")) {
+                } else {
+                    event.preventDefault();
+                }
+            });
+        });
+        $(document).ready(function () {
+            $("#example").DataTable({
+                responsive: true,
+                pageLength: 10,
+            });
+        });
+    </script>
+</head>
+
+<body class="font-large">
+    <br />
+    <br />
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+            <span>{{ message }}</span>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+    <br />
+    <br />
+    <section>
+        <!-- <div class="container">
+            <div class="card border-0">
+                <article class="card-body" style="padding: 5rem;">
+                    <h4 class="card-title text-center mb-4 mt-1">Sign in</h4>
+                    <form>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                </div>
+                                <input name="" class="form-control" placeholder="Email or login" type="email">
+                            </div> 
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                </div>
+                                <input class="form-control" placeholder="******" type="password">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block"> Login </button>
+                        </div> 
+                        <p class="text-center"><a href="#" class="btn">Forgot password?</a></p> 
+                        <p class="text-right"><a href="#" class="btn">New User? Register</a></p>
+                    </form>
+                </article>
+            </div>
+        </div> -->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4 card z-depth-4" style="box-shadow: grey 5px; border-radius:30px">
+                    <article class="card-body">
+                        <!-- <h4 class="card-title text-center mb-4 mt-1">Sign in</h4> -->
+                        <img class="circle" src="{{url_for('static', filename='dec.png')}}" style="
+                        display: block;
+                        margin-left: auto;
+                        margin-right: auto;
+                        width: 80px;
+                        height:70px;
+                        " /><br>
+                        <h5 class="text-success text-center"><i><strong>Login</strong></i></h5><br>
+                        <form action="{{url_for('signin')}}" method="POST">
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                                    </div>
+                                    <input name="email" class="form-control" placeholder="Please enter email id"
+                                        type="email">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                                    </div>
+                                    <input class="form-control" placeholder="******" type="password" name="password">
+                                </div>
+                            </div>
+
+                            <br>
+                            
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-outline-primary btn-block"> Login </button>
+                            </div>
+
+                            <br>
+
+                            <!-- <p class="text-center"><a href="#" class="btn">Forgot password?</a></p> -->
+                            <p class="text-right"><a href="{{url_for('register')}}" class="btn">New User? Register</a></p>
+                        </form>
+                    </article>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

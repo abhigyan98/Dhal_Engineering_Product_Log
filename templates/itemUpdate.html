@@ -1,0 +1,71 @@
+{% extends "index.html" %} {% block content1 %}
+
+<section>
+  <script>
+    $(document).ready(function () {
+      $(".datepicker").datepicker({ format: "dd-mmmm-yyyy" });
+    });
+  </script>
+
+  <div class="jumbotron bg-transparent">
+    {% for i in sItem %}
+    <form action="/updatedItem/{{i[0]}}" , method="POST">
+      <div class="form-group">
+        <h3 class="text-center">UPDATE ITEM</h3>
+
+        <br />
+        <div class="form-row">
+          <div class="col-md-3 mb-3 text-center form-group">
+            <label for="validationCustom03">Item Name</label>
+            <input type="text" class="form-control" id="validationCustom03" value="{{i[2]}}" name="name" />
+          </div>
+
+          <div class="col-md-3 mb-3 text-center form-group">
+            <label for="validationCustom04">Select Category</label>
+            <input type="text" class="form-control" id="validationCustom04" value="{{i[1]}}" name="category" readonly/>
+          </div>
+
+          <div class="col-md-3 mb-3 text-center form-group">
+            <label for="validationCustom04">HSN code</label>
+            <input type="text" class="form-control" id="validationCustom04" value="{{i[4]}}" name="hsn" />
+          </div>
+
+          <div class="col-md-3 mb-3 text-center form-group">
+            <label for="validationCustom04">Select Seller</label>
+            <input type="text" class="form-control" id="validationCustom04" value="{{i[3]}}" name="seller" readonly/>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-3 mb-3 text-center form-group">
+            <label for="validationCustom03">Quantity</label>
+            <input type="text" class="form-control" id="validationCustom03" value="{{i[5]}}" name="quantity" />
+          </div>
+
+          <div class="col-md-3 mb-3 text-center form-group">
+            <label for="validationCustom04">Select Unit</label>
+            <input type="text" class="form-control" id="validationCustom04" value="{{i[6]}}" name="unit" readonly/>
+          </div>
+
+          <div class="col-md-3 mb-3 text-center form-group">
+            <label for="validationCustom04">Rate</label>
+            <input type="text" class="form-control" id="validationCustom04" value="{{i[7]}}" name="rate" />
+          </div>
+
+          <div class="col-md-3 mb-3 text-center form-group">
+            <label>Select Date</label><br />
+            <input type="date" class="datepicker form-control" name="date" value="{{i[8]}}" />
+          </div>
+        </div>
+      </div><br>
+      <div class="text-center">
+        <button type="submit" class="btn btn-outline-primary btn-lg text-center">
+          Submit
+        </button>
+      </div>
+    </form>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock content1 %}

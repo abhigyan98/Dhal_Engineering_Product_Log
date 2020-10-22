@@ -1,0 +1,112 @@
+{% extends "index.html" %} {% block content1 %}
+
+<section>
+    <div class="jumbotron bg-transparent">
+        <form action="/addClient" method="POST">
+            <div class="form-group">
+                <h3 class="text-center">ADD CLIENT</h3>
+                <br>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom03">Client Name</label>
+                        <input type="text" class="form-control" id="validationCustom03" placeholder="" name="name" required/>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom03">Client Work Order No</label>
+                        <input type="text" class="form-control" id="validationCustom03" placeholder="" name="orderno" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom04">GST No</label>
+                        <a class="btn btn-sm" href="https://findgst.in/" target="_blank"><i
+                                class="fa fa-link text-black"> </i></a>
+                        <input type="text" class="form-control" id="validationCustom04" placeholder="" name="gstno" />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationCustom03">Client Address</label>
+                        <textarea class="form-control" id="validationCustom03" placeholder=""
+                            name="clientAddress" /></textarea>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationCustom03">Site Address</label>
+                        <textarea class="form-control" id="validationCustom03" placeholder=""
+                            name="siteAddress" /></textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom03">Contact Person</label>
+                        <input type="text" class="form-control" id="validationCustom03" placeholder="" name="contact" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom03">Email</label>
+                        <input type="email" class="form-control" id="validationCustom03" placeholder="" name="email" />
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom04">Mobile</label>
+                        <input type="text" class="form-control" id="validationCustom04" placeholder="" name="mobile" />
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary btn-lg ">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
+<!-- <hr> -->
+<section>
+    <script>
+        $(document).ready(function () {
+            $("#clientTable").DataTable({ pagingType: "full_numbers", "bDestroy": true });
+        });
+    </script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <div class="p-3 bg-transparent ">
+        <h3 class="text-center">CLIENT DETAILS</h3>
+        <a class="btn btn-outline-dark" href="/clientExcel">Export to Excel</a><br><br>
+        <table id="clientTable" class="display text-center" width="100%" cellspacing="0">
+            <thead class="table-color">
+                <tr>
+                    <th>Client Name</th>
+                    <th>Client Work Order no</th>
+                    <th>GST No</th>
+                    <th>Client Address</th>
+                    <th>Site Address</th>
+                    <th>Contact Person</th>
+                    <th>Email Id</th>
+                    <th>Phone No</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in clientData %}
+                <tr>
+                    <td>{{i[1]}}</td>
+                    <td>{{i[2]}}</td>
+                    <td>{{i[3]}}</td>
+                    <td>{{i[4]}}</td>
+                    <td>{{i[5]}}</td>
+                    <td>{{i[6]}}</td>
+                    <td>{{i[8]}}</td>
+                    <td>{{i[7]}}</td>
+                    <td>
+                        <a href="/clientUpdate/{{i[0]}}"><i class="fa fa-edit" aria-hidden="true"
+                                style="color: rgb(64, 67, 238); font-size: 20px"></i></a>
+                    </td>
+                    <td>
+                        <a href="/clientDelete/{{i[0]}}"><i class="fa fa-trash deleteItem" aria-hidden="true"
+                                style="color: red; font-size: 20px"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% endblock content1 %}

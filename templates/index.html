@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="icon" href="/pwa_logo/icon48.png" type="image/png" />
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+  <link rel="icon" href="{{url_for('static', filename='dec.png')}}" type="image/x-icon">
+  <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
+  <title>Dhal Engineering</title>
+  <style>
+    .navbar-color {
+      background-color: rgba(253, 191, 76, 0.897);
+    }
+
+    .font-large {
+      font-size: 16px !important;
+    }
+
+    .round {
+      border-radius: 30px;
+      font-size: 18px;
+    }
+
+    .size {
+      font-size: 18px;
+    }
+
+    .table-font {
+      font-size: 5px;
+    }
+
+    .table-color {
+      background-color: rgba(50, 255, 129, 0.568);
+    }
+
+    .nav:hover {
+      background-color: blue;
+    }
+
+    .circle {
+      border-radius: 25px;
+    }
+  </style>
+  <script>
+    $(document).ready(function () {
+      $(".deleteItem").click(function () {
+        if (confirm("Do you want to delete this data?")) {
+        } else {
+          event.preventDefault();
+        }
+      });
+    });
+    $(document).ready(function () {
+      $("#example").DataTable({
+        responsive: true,
+        pageLength: 10,
+      });
+    });
+  </script>
+</head>
+
+<body class="font-large">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light navbar-color">
+    <a class="navbar-brand" href="{{url_for('index')}}"><img class="circle"
+        src="{{url_for('static', filename='dec.png')}}" style="
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 40px;
+      height:40px;
+    " /></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="{{url_for('category')}}">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{{url_for('seller')}}">Seller</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{{url_for('client')}}">Client</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{{url_for('item')}}">Items</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="{{url_for('list')}}">View List</a>
+        </li>
+      </ul>
+      <h5 class="mr-sm-2 text-center m-1" style="color: rgb(0, 0, 0)">
+        {{name}}
+        <a class="btn text-danger" href="/logout"><i class="fa fa-power-off" style="font-size:24px"></i></a>
+      </h5>
+    </div>
+  </nav>
+  <br />
+  <br />
+  <br />
+  <br />
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+      <span>{{ message }}</span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+  </div>
+  <br />
+  <br />
+  <section>
+    {% block content1 %}
+    <div class="container"><br>
+      <h3 class="text-center" style="color: rgb(255, 123, 0);"><i><strong>PROFILE</strong></i></h3><br><br>
+      <div class="row">
+        <div class="col-sm-6">
+          <!-- <br />
+          <br />
+          <br /> 
+          <br />-->
+          <img class="" src="{{url_for('static', filename='dec.jpg')}}" style="
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+          " />
+        </div>
+        <div class="col-sm-6">
+          <br />
+          <div class="row">
+            <div class="col-sm-4"><h5 class="text-success text-left"><i><strong>NAME:</strong></i></h5></div>
+            <div class="col-sm-8"><h5 class="text-primary text-left"><i><strong>{{name}}</strong></i></h5></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"><h5 class="text-success text-left"><i><strong>EMAIL:</strong></i></h5></div>
+            <div class="col-sm-8"><h5 class="text-primary text-left"><i><strong>{{email}}</strong></i></h5></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4"><h5 class="text-success text-left"><i><strong>TIME OF LOGIN:</strong></i></h5></div>
+            <div class="col-sm-8"><h5 class="text-primary text-left"><i><strong>{{timestamp}}</strong></i></h5></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock content1 %}
+  </section>
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{% extends "index.html" %} {% block content1 %}
+<section>
+  <div class="jumbotron bg-transparent">
+    {% for c in sData %}
+    <form action="/updatedCategory/{{c[0]}}" method="POST">
+      <div class="form-group">
+        <h3 class="text-center">UPDATE CATEGORY</h3><br>
+        <input type="text" class="form-control" id="category" name="name" aria-describedby=""
+          placeholder="Enter Category Name (Eg: Pipes, Tanks, Filter etc)" value="{{c[1]}}"/>
+      </div>
+      <button type="submit" class="btn btn-lg btn-outline-primary">Submit</button>
+    </form>
+    {% endfor %}
+  </div>
+</section>
+
+{% endblock content1 %}

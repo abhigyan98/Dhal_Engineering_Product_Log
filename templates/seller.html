@@ -1,0 +1,87 @@
+{% extends "index.html" %} {% block content1 %}
+
+<section>
+  <div class="jumbotron bg-transparent">
+    <form action="/addSeller" method="POST">
+      <div class="form-group">
+        <h3 class="text-center">ADD SELLER</h3>
+        <br>
+        <div class="form-row">
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom03">Company Name</label>
+            <input type="text" class="form-control" id="validationCustom02" placeholder="" name="company" required/>
+            <div class="invalid-feedback">Please provide a valid name.</div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom03">Email</label>
+            <input type="email" class="form-control" id="validationCustom03" placeholder="" name="email" />
+            <div class="invalid-feedback">Please provide a valid Email.</div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom04">Contact Person</label>
+            <input type="text" class="form-control" id="validationCustom04" placeholder="" name="contact" />
+            <div class="invalid-feedback">Please provide a valid Name.</div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="validationCustom05">Phone No</label>
+            <input type="text" class="form-control" id="validationCustom05" placeholder="" name="phone"
+              minlength="10" />
+            <div class="invalid-feedback">Please provide a valid No.</div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="btn btn-lg btn-outline-primary">Submit</button>
+      </div>
+    </form>
+  </div>
+</section>
+<!-- <hr> -->
+<section>
+  <script>
+    $(document).ready(function () {
+      $("#sellerTable").DataTable({ pagingType: "full_numbers", "bDestroy": true });
+    });
+  </script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+  <div class="p-3 bg-transparent ">
+    <h3 class="text-center">SELLER DETAILS</h3>
+    <a class="btn btn-outline-dark text-left" href="/sellerExcel">Export to Excel</a><br><br>
+    <table id="sellerTable" class="display text-center" width="100%" cellspacing="0">
+      <thead class="table-color">
+        <tr>
+          <th>Company Name</th>
+          <th>Email</th>
+          <th>Contact Person</th>
+          <th>Phone No</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in sellerData %}
+        <tr>
+          <td>{{i[1]}}</td>
+          <td>{{i[2]}}</td>
+          <td>{{i[3]}}</td>
+          <td>{{i[4]}}</td>
+          <td>
+            <a href="/sellerUpdate/{{i[0]}}"><i class="fa fa-edit" aria-hidden="true"
+                style="color: rgb(64, 67, 238); font-size: 20px"></i></a>
+          </td>
+          <td>
+            <a href="/sellerDelete/{{i[0]}}"><i class="fa fa-trash deleteItem" aria-hidden="true"
+                style="color: red; font-size: 20px"></i></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</section>
+
+{% endblock content1 %}

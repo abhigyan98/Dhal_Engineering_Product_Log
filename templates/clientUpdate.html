@@ -1,0 +1,61 @@
+{% extends "index.html" %} {% block content1 %}
+
+<section>
+    <div class="jumbotron bg-transparent">
+        {% for c in clData %}
+        <form action="/updatedClient/{{c[0]}}" method="POST">
+            <div class="form-group">
+                <h3 class="text-center">UPDATE CLIENT</h3>
+                <br>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom03">Client Name</label>
+                        <input type="text" class="form-control" id="validationCustom03" placeholder="" name="name" value="{{c[1]}}"/>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom03">Client Work Order No</label>
+                        <input type="text" class="form-control" id="validationCustom03" placeholder="" name="orderno" value="{{c[2]}}"/>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom04">GST No</label>
+                        <a class="btn btn-sm" href="https://findgst.in/" target="_blank"><i
+                                class="fa fa-link text-black"> </i></a>
+                        <input type="text" class="form-control" id="validationCustom04" placeholder="" name="gstno" value="{{c[3]}}"/>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <label for="validationCustom03">Client Address</label>
+                        <textarea class="form-control" id="validationCustom03" placeholder=""
+                            name="clientAddress" />{{c[4]}}</textarea>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationCustom03">Site Address</label>
+                        <textarea class="form-control" id="validationCustom03" placeholder=""
+                            name="siteAddress" />{{c[5]}}</textarea>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom03">Contact Person</label>
+                        <input type="text" class="form-control" id="validationCustom03" placeholder="" name="contact" value="{{c[6]}}"/>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom03">Email</label>
+                        <input type="email" class="form-control" id="validationCustom03" placeholder="" name="email" value="{{c[8]}}"/>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom04">Mobile</label>
+                        <input type="text" class="form-control" id="validationCustom04" placeholder="" name="mobile" value="{{c[7]}}"/>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-outline-primary btn-lg ">Submit</button>
+            </div>
+        </form>
+        {% endfor %}
+    </div>
+</section>
+
+{% endblock content1 %}

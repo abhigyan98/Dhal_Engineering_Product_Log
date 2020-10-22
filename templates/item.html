@@ -1,0 +1,148 @@
+{% extends "index.html" %} {% block content1 %}
+
+<section>
+  <script>
+    $(document).ready(function () {
+      $(".datepicker").datepicker({ format: "dd-mmmm-yyyy" });
+    });
+  </script>
+
+  <div class="jumbotron bg-transparent">
+    <form action="/addItem" , method="POST">
+      <div class="form-group">
+        <h3 class="text-center">ADD ITEM</h3>
+        
+        <br />
+        <div class="form-row">
+          <div class="col-md-3 mb-3 text-center">
+            <label for="validationCustom03">Item Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationCustom03"
+              placeholder=""
+              name="name"
+              required
+            />
+          </div>
+
+          <div class="col-md-3 mb-3 text-center">
+            <label for="validationCustom03">Select Category</label><br />
+            <select name="category" class="white-text form-control">
+              <option value="" class="white-text" disabled selected>
+                Choose Category
+              </option>
+              <optgroup name="category">
+                {% for c in clist %}
+                <option value="{{c}}">{{c}}</option>
+                {% endfor %}
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="col-md-3 mb-3 text-center">
+            <label for="validationCustom04">HSN code</label>
+            <a class="btn btn-sm" href="https://cbic-gst.gov.in/gst-goods-services-rates.html" target="_blank"><i class="fa fa-link text-black"> </i></a>
+            <input
+              type="text"
+              class="form-control"
+              id="validationCustom04"
+              placeholder=""
+              name="hsn"
+            />
+
+          </div>
+
+          <div class="col-md-3 text-center">
+            <div class="input-field">
+              <label>Select Seller</label><br />
+              <select name="seller" class="white-text form-control">
+                <option value="" class="white-text" disabled selected>
+                  Choose Seller
+                </option>
+                <optgroup name="seller">
+                  {% for s in slist %}
+                  <option value="{{s}}">{{s}}</option>
+                  {% endfor %}
+                </optgroup>
+              </select>
+            </div>
+            <div class="invalid-feedback">Please provide a valid No.</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-3 mb-3 text-center">
+            <label for="validationCustom03">Quantity</label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationCustom03"
+              placeholder=""
+              name="quantity"
+            />
+          </div>
+          
+          <div class="col-md-3 mb-3 text-center">
+            <label>Select Unit</label><br />
+            <select name="unit" class="white-text form-control">
+              <option value="" class="white-text" disabled selected>
+                Choose Unit
+              </option>
+              <optgroup name="unit" label="LENGTH">
+                <option value="CM">CM</option>
+                <option value="FEET">FEET</option>
+                <option value="INCH">INCH</option>
+                <option value="METER">METER</option>
+              </optgroup>
+              <optgroup name="unit" label="VOLUME">
+                <option value="C³">C³</option>
+                <option value="FEET³">FEET³</option>
+                <option value="INCH³">INCH³</option>
+                <option value="M³">M³</option>
+              </optgroup>
+              <optgroup name="unit" label="SERVICE">
+                <option value="JOB">JOB</option>
+              </optgroup>
+              <optgroup name="unit" label="OTHERS">
+                <option value="BOX">BOX</option>
+                <option value="DOZEN">DOZEN</option>
+                <option value="DRUM">DRUM</option>
+                <option value="GALLON">GALLON</option>
+                <option value="JAR">JAR</option>
+                <option value="KILOLITRE">KILOLITRE</option>
+                <option value="LITRE">LITRE</option>
+                <option value="NUMBER/PIECE">NUMBER/PIECE</option>
+                <option value="PACKET">PACKET</option>
+                <option value="SACKS">SACKS</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="col-md-3 mb-3 text-center">
+            <label for="validationCustom04">Rate</label>
+            <input
+              type="text"
+              class="form-control"
+              id="validationCustom04"
+              placeholder=""
+              name="rate"
+            />
+          </div>
+
+          <div class="col-md-3 mb-3 text-center">
+            <label>Select Date</label><br />
+            <input type="date" class="datepicker form-control" name="date"  placeholder="dd-mmm-yyyy"/>
+          </div>
+        </div>
+      </div><br>
+      <div class="text-center">
+        <button type="submit" class="btn btn-outline-primary btn-lg text-center">
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+{% endblock content1 %}
