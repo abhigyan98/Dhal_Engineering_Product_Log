@@ -19,14 +19,10 @@ app.secret_key = 'secret-f22c8e2e-d0e9-490f-9be8-17769ccc1316'
 link = 'http://127.0.0.1:3000'
 
 # # Set environment variables testing
-os.environ['ADMIN_EMAIL'] = 'tumpa2402@gmail.com'
-os.environ['ADMIN_EMAIL_PASSWORD'] = 'Mohar@1801'
-os.environ['VERIFYING_EMAIL'] = 'abhigyanganguly73@gmail.com'
+os.environ['ADMIN_EMAIL'] = '<ADMIN_EMAIL>'
+os.environ['ADMIN_EMAIL_PASSWORD'] = '<ADMIN_PASS>'
+os.environ['VERIFYING_EMAIL'] = '<VERIFYING_EMAIL>'
 
-# # # Set environment variables production
-# # os.environ['ADMIN_EMAIL'] = 'dhalengineering.dev@gmail.com'
-# # os.environ['ADMIN_EMAIL_PASSWORD'] = 'Dhal@@1234'
-# # os.environ['VERIFYING_EMAIL'] = 'info@dhalengineering.com'
 
 # Get environment variables
 ADMIN_EMAIL = os.getenv('ADMIN_EMAIL')
